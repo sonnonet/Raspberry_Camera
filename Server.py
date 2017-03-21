@@ -4,7 +4,7 @@ from time import strftime, localtime
 from PIL import Image
 
 sys.path.insert(0, 'D:\Pi_CameraData_Gangnam')
-pic = 'D:\Pi_CameraData_Gangnam/%s_cam_shot.jpg'
+pic = 'D:\Pi_CameraData_Gangnam\%s_cam_shot.jpg'
 
 # Start a socketlistening for connections on 0.0.0.0:8000 (0.0.0.0 means
 # all interfaces)
