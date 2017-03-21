@@ -4,19 +4,25 @@ import struct
 import time
 import picamera
 
+Server_IP = '125.7.128.41'
+Server_Port = 20001 
+Shooting_Cycle = 60 # 1 is one second #  minium is 60 -> 1 min now 
+
+
 # Connect a client socket to my_server:8000 (change my_server to the
 # hostname of your server)
 client_socket = socket.socket()
-client_socket.connect(('my_server', 8000))
+client_socket.connect((Server_IP,Server_Port))
 
 # Make a file-like object out of the connection
 connection = client_socket.makefile('wb')
 try:
     camera = picamera.PiCamera()
-    camera.resolution = (640, 480)
+    camera.resolution = (640, 480) 
     # Start a preview and let the camera warm up for 2 seconds
     camera.start_preview()
-    time.sleep(2)
+    time.sleep(5)
+    # camera.stop_preview()
 
     # Note the start time and construct a stream to hold image data
     # temporarily (we could write it directly to connection but in this
@@ -33,11 +39,12 @@ try:
         stream.seek(0)
         connection.write(stream.read())
         # If we've been capturing for more than 30 seconds, quit
-        if time.time() - start > 30:
-            break
+        # if time.time() - start > 30:
+        #    break
         # Reset the stream for the next capture
         stream.seek(0)
         stream.truncate()
+        time.sleep(Shooting_Cycle)
     # Write a length of zero to the stream to signal we're done
     connection.write(struct.pack('<L', 0))
 finally:
