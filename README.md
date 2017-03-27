@@ -30,3 +30,7 @@ after modification of file
 ```
 Pi@raspberryPi:~$ sudo raspi-config
 ```
+
+```
+Pi@raspberryPi:~$ git clone  https://github.com/sonnonet/Raspberry_Camera/
+```
