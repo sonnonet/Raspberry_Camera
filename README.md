@@ -25,3 +25,8 @@ after modification of file
 9. git commit -m " commit message"
 
 10. git push origin master
+
+
+```
+Pi@raspberryPi:~$ sudo raspi-config
+```
